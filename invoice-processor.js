@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const { DocumentProcessorServiceClient } =
   require("@google-cloud/documentai").v1;
 const { Storage } = require("@google-cloud/storage");
-require("dotenv").config();
+//require("dotenv").config();
 const uuid = require('uuid');
 const app = express();
 const uniqueId = uuid.v4();
@@ -146,43 +146,6 @@ async function cleanup() {
   console.log("Clean up - done");
 }
 
-// app.post("/process-invoice", async (req, res) => {
-//   const { content } = req.body;
-//   // console.log(content);
-
-//   const request = {
-//     name: `projects/${projectId}/locations/${location}/processors/${processorId}`,
-//     rawDocument: {
-//       content: content,
-//       mimeType: "application/pdf",
-//     },
-//   };
-
-//   try {
-//     // Send the document for processing
-//     const [result] = await client.processDocument(request);
-
-//     // Extract the invoice data
-//     const { document } = result;
-//     const invoiceData = document.entities;
-
-//     if (!invoiceData) {
-//       throw new Error("Could not extract invoice data from the document");
-//     } else {
-//       // Send the extracted invoice data back as JSON
-//       res.json({
-//         ...invoiceData,
-//       });
-//     }
-//   } catch (err) {
-//     console.error("Error processing document:", err);
-//     res.status(500).send("Error processing document");
-//   }
-// });
-
-// Batch processing
-
-// Endpoint for batch processing invoices
 
 app.post(
   "/process-multiple",
