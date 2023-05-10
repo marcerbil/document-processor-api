@@ -17,6 +17,8 @@
 .env
 app.yaml
 .gcloudignore
+Dockerfile
+.dockerignore
 
 package-lock.json
 
