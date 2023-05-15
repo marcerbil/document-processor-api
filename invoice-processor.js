@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const { DocumentProcessorServiceClient } =
   require("@google-cloud/documentai").v1;
 const { Storage } = require("@google-cloud/storage");
-require("dotenv").config();
+//require("dotenv").config();
 const uuid = require('uuid');
 const app = express();
 const uniqueId = uuid.v4();
