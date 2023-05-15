@@ -19,7 +19,7 @@
     "start": "node invoice-processor.js"
   },
   "name": "document-processor-api",
-  "version": "1.0.0",
+  "version": "1.6.0",
   "description": "Integration for Google Document AI",
   "main": "invoice-processor.js",
   "author": "Marc E",

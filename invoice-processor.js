@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const { DocumentProcessorServiceClient } =
   require("@google-cloud/documentai").v1;
 const { Storage } = require("@google-cloud/storage");
-//require("dotenv").config();
+require("dotenv").config();
 const uuid = require('uuid');
 const app = express();
 const uniqueId = uuid.v4();
@@ -39,6 +39,8 @@ const limiter = rateLimit({
 const PORT = process.env.PORT;
 const corsOptions = {
   origin: process.env.REACT_APP_URL,
+  allowedHeaders: ["X-API-KEY", "Origin"],
+  methods: ['GET', 'POST', 'OPTIONS'],
   optionsSuccessStatus: 200,
 };
 const projectId = process.env.GOOGLE_PROJECT_ID;
@@ -151,8 +153,7 @@ app.post(
   "/process-multiple",
   upload.array("files[]"),
   async function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', process.env.REACT_APP_URL);
-    res.cookie('uSessionId', uniqueId);
+    res.setHeader('Access-Control-Allow-Origin', process.env.REACT_APP_URL);
 
     const files = req.files;
 
@@ -233,7 +234,7 @@ app.post(
 
 // download all processed files
 app.get("/processed", async (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', process.env.REACT_APP_URL);
+  res.setHeader('Access-Control-Allow-Origin', process.env.REACT_APP_URL);
 
   try {
     let directoryPath = path.join(__dirname, "processed", uniqueId);
